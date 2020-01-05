@@ -12,4 +12,4 @@ def result():
     return 'Received !' # response to your request.
 
 if __name__ == '__main__':
-    app.run(host='10.0.0.148', port=80)
+    app.run(host='https://daniel-bot-test.herokuapp.com/', port=80)
