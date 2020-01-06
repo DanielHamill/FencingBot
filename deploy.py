@@ -1,23 +1,33 @@
+import json
+
+from urllib.parse import urlencode
+from urllib.request import Request, urlopen
+
 from flask import Flask, request
-import requests
 
 app = Flask(__name__)
 
-def send():
-    info = {
-    "bot_id"  : "9441ec69d3223735bd84ef90eb",
-    "text"    : "response"
-    }
-    r = requests.post('https://api.groupme.com/v3/bots/post', data=info)
+def send_message(msg):
+    url  = 'https://api.groupme.com/v3/bots/post'
 
-@app.route('/')
-def hello():
-    return "Hello World!"
+    data = {
+            'bot_id' : '9441ec69d3223735bd84ef90eb',
+            'text'   : response,
+            }
+    request = Request(url, urlencode(data).encode())
+    json = urlopen(request).read().decode()
+
 
 @app.route('/', methods=['POST'])
-def result():
-    send()
-    return 'Received !' # response to your request.
+def webhook():
+  data = request.get_json()
+
+  # We don't want to reply to ourselves!
+  if data['name'] != 'apnorton-test-bot':
+    msg = '{}, you sent "{}".'.format(data['name'], data['text'])
+    send_message(msg)
+
+  return "ok", 200
 
 if __name__ == '__main__':
     app.run(host='https://daniel-bot-test.herokuapp.com/', port=80)
