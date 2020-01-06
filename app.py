@@ -15,8 +15,8 @@ def webhook():
 
     # We don't want to reply to ourselves!
     if data['name'] != 'apnorton-test-bot':
-    msg = '{}, you sent "{}".'.format(data['name'], data['text'])
-    send_message(msg)
+        msg = '{}, you sent "{}".'.format(data['name'], data['text'])
+        send_message(msg)
 
     return "ok", 200
 
