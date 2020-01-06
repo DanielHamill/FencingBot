@@ -12,7 +12,7 @@ def send_message(msg):
 
     data = {
             'bot_id' : '9441ec69d3223735bd84ef90eb',
-            'text'   : response,
+            'text'   : 'response',
             }
     request = Request(url, urlencode(data).encode())
     json = urlopen(request).read().decode()
