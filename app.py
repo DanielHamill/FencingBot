@@ -28,6 +28,3 @@ def webhook():
     send_message(msg)
 
   return "ok", 200
-
-if __name__ == '__main__':
-    app.run(host='https://daniel-bot-test.herokuapp.com/', port=80)
