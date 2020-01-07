@@ -12,14 +12,25 @@ commands = {
     '!test' : 'test command',
     '!UGAOpen' : 'Here is the askfred for the UGA Open: https://askfred.net/Events/moreInfo.php?tournament_id=45465',
     '!TravelForm' : 'Here is the travel form: https://docs.google.com/forms/d/e/1FAIpQLSetkok6nL5vEQvBSvvAKLW5s0GpZm3Q4_B7vPy0OoCNKLutaA/viewform'
+    '!Help' : 1
 }
+
+def outputCommands():
+    var commands;
+    for state in commands:
+        commands += state
+    return commands
 
 # parses input. If command is present in input, output the mapping of the command
 def parseInput(msg):
     if(msg[0]=='!'):
         #loops through the commands
         for state in commands:
+            # if command is present in the message
             if(msg.find(state) != -1):
+                # if value of key is 1, then output commands
+                if(commands[state]==1):
+                    return outputCommands()
                 return commands[state]
 
     if(msg.find('thank you Stabby') != -1 or msg.find('thanks Stabby') != -1):
