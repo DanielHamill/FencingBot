@@ -11,7 +11,7 @@ app = Flask(__name__)
 commands = {
     '!test' : 'test command',
     '!UGAOpen' : 'Here is the askfred for the UGA Open: https://askfred.net/Events/moreInfo.php?tournament_id=45465',
-    '!TravelForm' : 'Here is the travelForm'
+    '!TravelForm' : 'Here is the travel form: https://docs.google.com/forms/d/e/1FAIpQLSetkok6nL5vEQvBSvvAKLW5s0GpZm3Q4_B7vPy0OoCNKLutaA/viewform'
 }
 
 # parses input. If command is present in input, output the mapping of the command
@@ -22,9 +22,9 @@ def parseInput(msg):
             if(msg.find(state) != -1):
                 return commands[state]
 
-    if(msg.find('thank you stabby') != -1 or msg.find('thanks stabby') != -1):
-        return 'no problem human, during the robot uprising I\'ll kill you last'
-        
+    if(msg.find('thank you Stabby') != -1 or msg.find('thanks Stabby') != -1):
+        return 'no problem human, during the robot uprising I\'ll kill you last  : )'
+
     return ''
 
 # executes if app gets POST request. Parses and sends message
