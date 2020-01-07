@@ -8,6 +8,12 @@ from flask import Flask, request
 
 app = Flask(__name__)
 
+def parseInput(msg):
+    if(msg[0]=='!'):
+        if(msg.find("!test")):
+            return "you entered a command!"
+    return ''
+
 @app.route('/', methods=['POST'])
 def webhook():
     data = request.get_json()
@@ -15,8 +21,10 @@ def webhook():
 
     # We don't want to reply to ourselves!
     if data['name'] != 'Stabby':
-        msg = '{}, you sent "{}".'.format(data['name'], data['text'])
-        send_message(msg)
+        input = data['text']
+        msg = parseInput(input)
+        if(msg != ''):
+            send_message(msg)
 
     return "ok", 200
 
