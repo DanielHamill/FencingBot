@@ -8,10 +8,17 @@ from flask import Flask, request
 
 app = Flask(__name__)
 
+commands = {
+    '!test' : 'test command',
+    '!UGAOpen' : 'Here is the askfred for the UGA Open: https://askfred.net/Events/moreInfo.php?tournament_id=45465',
+    '!TravelForm' : 'Here is the travelForm'
+}
+
 def parseInput(msg):
     if(msg[0]=='!'):
-        if(msg.find("!test") != -1):
-            return "you entered a command!"
+        for state in commands:
+            if(msg.find(state) != -1):
+                return commands[state]
     return ''
 
 @app.route('/', methods=['POST'])
