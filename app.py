@@ -14,27 +14,33 @@ commands = {
     '!TravelForm' : 'Here is the travelForm'
 }
 
+# parses input. If command is present in input, output the mapping of the command
 def parseInput(msg):
     if(msg[0]=='!'):
+        #loops through the commands
         for state in commands:
             if(msg.find(state) != -1):
                 return commands[state]
     return ''
 
+# executes if app gets POST request. Parses and sends message
 @app.route('/', methods=['POST'])
 def webhook():
+    # gets data from post
     data = request.get_json()
     log('Recieved {}'.format(data))
 
     # We don't want to reply to ourselves!
     if data['name'] != 'Stabby':
         input = data['text']
+        # parses commands from input
         msg = parseInput(input)
         if(msg != ''):
             send_message(msg)
 
     return "ok", 200
 
+# sends message in body of post to Group.me api
 def send_message(msg):
     url  = 'https://api.groupme.com/v3/bots/post'
 
@@ -42,6 +48,8 @@ def send_message(msg):
           'bot_id' : '9441ec69d3223735bd84ef90eb',
           'text'   : msg,
          }
+
+    # sends post request
     request = Request(url, urlencode(data).encode())
     json = urlopen(request).read().decode()
 
