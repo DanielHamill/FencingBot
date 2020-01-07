@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 def parseInput(msg):
     if(msg[0]=='!'):
-        if(msg.find("!test")):
+        if(msg.find("!test") != -1):
             return "you entered a command!"
     return ''
 
