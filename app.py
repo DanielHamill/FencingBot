@@ -15,6 +15,7 @@ commands = {
     '!Help' : 1
 }
 
+# work in progress
 def outputCommands():
     var commands;
     for state in commands:
@@ -26,16 +27,11 @@ def parseInput(msg):
     if(msg[0]=='!'):
         #loops through the commands
         for state in commands:
-            # if command is present in the message
             if(msg.find(state) != -1):
-                # if value of key is 1, then output commands
-                if(commands[state]==1):
-                    return outputCommands()
                 return commands[state]
-
-    if(msg.find('thank you Stabby') != -1 or msg.find('thanks Stabby') != -1):
+        #just an easter egg
+        if(msg.find('thank you Stabby') != -1 or msg.find('thanks Stabby') != -1):
         return 'no problem human, during the robot uprising I\'ll kill you last  : )'
-
     return ''
 
 # executes if app gets POST request. Parses and sends message
