@@ -14,12 +14,6 @@ commands = {
     '!TravelForm' : 'Here is the travel form: https://docs.google.com/forms/d/e/1FAIpQLSetkok6nL5vEQvBSvvAKLW5s0GpZm3Q4_B7vPy0OoCNKLutaA/viewform'
 }
 
-# work in progress
-def outputCommands():
-    var commands;
-    for state in commands:
-        commands += state
-    return commands
 
 # parses input. If command is present in input, output the mapping of the command
 def parseInput(msg):
