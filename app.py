@@ -12,7 +12,6 @@ commands = {
     '!test' : 'test command',
     '!UGAOpen' : 'Here is the askfred for the UGA Open: https://askfred.net/Events/moreInfo.php?tournament_id=45465',
     '!TravelForm' : 'Here is the travel form: https://docs.google.com/forms/d/e/1FAIpQLSetkok6nL5vEQvBSvvAKLW5s0GpZm3Q4_B7vPy0OoCNKLutaA/viewform'
-    '!Help' : 1
 }
 
 # work in progress
