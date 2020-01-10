@@ -24,7 +24,7 @@ def parseInput(msg):
                 return commands[state]
         #just an easter egg
         if(msg.find('thank you Stabby') != -1 or msg.find('thanks Stabby') != -1):
-        return 'no problem human, during the robot uprising I\'ll kill you last  : )'
+            return 'no problem human, during the robot uprising I\'ll kill you last  : )'
     return ''
 
 # executes if app gets POST request. Parses and sends message
