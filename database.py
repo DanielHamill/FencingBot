@@ -24,7 +24,6 @@ def insert_commands():
 def test():
     db = dataset.connect('sqlite:///mydatabase.db')
     command_table = db['commands']
-
     for c in command_table:
         commands[c['command']] = c['output']
     print(parseInput('!Valentine'))

@@ -12,15 +12,10 @@ app = Flask(__name__)
 db = dataset.connect('sqlite:///mydatabase.db')
 command_table = db['commands']
 #print(parseInput("!test", commands))
-commands = dict()
+
 for c in command_table:
     commands[c['command']] = c['output']
 
-commands = {
-    '!test' : 'test command',
-    '!UGAOpen' : 'Here is the askfred for the UGA Open: https://askfred.net/Events/moreInfo.php?tournament_id=45465',
-    '!TravelForm' : 'Here is the travel form: https://docs.google.com/forms/d/e/1FAIpQLSetkok6nL5vEQvBSvvAKLW5s0GpZm3Q4_B7vPy0OoCNKLutaA/viewform'
-}
 
 # parses input. If command is present in input, output the mapping of the command
 def parseInput(msg):
