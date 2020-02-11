@@ -10,8 +10,11 @@ app = Flask(__name__)
 
 # database with commands, spoot counter, blacklist, etc.
 db = dataset.connect('sqlite:///mydatabase.db')
-commands = db['commands']
-
+command_table = db['commands']
+#print(parseInput("!test", commands))
+commands = dict()
+for c in command_table:
+    d[c['command']] = c['output']
 
 # parses input. If command is present in input, output the mapping of the command
 def parseInput(msg):
