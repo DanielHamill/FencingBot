@@ -1,6 +1,6 @@
 import sys
 import json
-
+import dataset
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
@@ -8,11 +8,9 @@ from flask import Flask, request
 
 app = Flask(__name__)
 
-commands = {
-    '!test' : 'test command',
-    '!UGAOpen' : 'Here is the askfred for the UGA Open: https://askfred.net/Events/moreInfo.php?tournament_id=45465',
-    '!TravelForm' : 'Here is the travel form: https://docs.google.com/forms/d/e/1FAIpQLSetkok6nL5vEQvBSvvAKLW5s0GpZm3Q4_B7vPy0OoCNKLutaA/viewform'
-}
+# database with commands, spoot counter, blacklist, etc.
+db = dataset.connect('sqlite:///mydatabase.db')
+commands = db['commands']
 
 
 # parses input. If command is present in input, output the mapping of the command
