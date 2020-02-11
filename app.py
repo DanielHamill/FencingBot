@@ -12,7 +12,7 @@ app = Flask(__name__)
 db = dataset.connect('sqlite:///mydatabase.db')
 command_table = db['commands']
 #print(parseInput("!test", commands))
-
+commands = {}
 for c in command_table:
     commands[c['command']] = c['output']
 
