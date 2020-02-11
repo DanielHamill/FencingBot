@@ -2,7 +2,9 @@ import dataset
 
 db = dataset.connect('sqlite:///mydatabase.db')
 
-def parseInput(msg, commands):
+commands = dict()
+
+def parseInput(msg):
     if(msg[0]=='!'):
         #loops through the commands
         for state in commands:
@@ -21,10 +23,9 @@ def insert_commands():
 
 def test():
     db = dataset.connect('sqlite:///mydatabase.db')
-    commands = db['commands']
-    #print(parseInput("!test", commands))
-    d = dict()
-    for command in commands:
-        d[command['command']] = command['output']
-    print(d)
+    command_table = db['commands']
+
+    for c in command_table:
+        commands[c['command']] = c['output']
+    print(parseInput('!Valentine'))
 test()
