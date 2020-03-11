@@ -16,3 +16,15 @@ def too_frequent(max, duration):
         else:
             calls.remove(calls[len(calls)-1])
     return False
+
+print(call(2,5))
+time.sleep(1)
+print(call(2,5))
+time.sleep(1)
+print(call(2,5))
+time.sleep(1)
+print(call(2,5))
+time.sleep(1)
+print(call(2,5))
+time.sleep(1)
+print(call(2,5))
