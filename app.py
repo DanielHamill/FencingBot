@@ -23,8 +23,10 @@ def webhook():
         input = data['text']
         # parses commands from input
 
+        msg = ''
         if(call(5, 60)):
             msg = parseInput(input)
+            global cooldown
             cooldown = False
         elif(not cooldown):
             cooldown = True
