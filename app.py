@@ -3,31 +3,12 @@ import json
 import dataset
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
-
+from ParseInput import parseInput
+from freq_counter import call
 from flask import Flask, request
 
 app = Flask(__name__)
-
-# database with commands, spoot counter, blacklist, etc.
-db = dataset.connect('sqlite:///mydatabase.db')
-command_table = db['commands']
-#print(parseInput("!test", commands))
-commands = {}
-for c in command_table:
-    commands[c['command']] = c['output']
-
-
-# parses input. If command is present in input, output the mapping of the command
-def parseInput(msg):
-    if(msg[0]=='!'):
-        #loops through the commands
-        for state in commands:
-            if(msg.find(state) != -1):
-                return commands[state]
-        #just an easter egg
-        if(msg.find('thank you Stabby') != -1 or msg.find('thanks Stabby') != -1):
-            return 'no problem human, during the robot uprising I\'ll kill you last  : )'
-    return ''
+cooldown = False
 
 # executes if app gets POST request. Parses and sends message
 @app.route('/', methods=['POST'])
@@ -40,7 +21,13 @@ def webhook():
     if data['name'] != 'Stabby':
         input = data['text']
         # parses commands from input
-        msg = parseInput(input)
+
+        if(call(5, 60)):
+            msg = parseInput(input)
+            cooldown = False
+        elif(not cooldown):
+            cooldown = True
+            msg = 'Woah woah woah slow down... don\'t you have better things to do than spam me with commands?'
         if(msg != ''):
             send_message(msg)
 

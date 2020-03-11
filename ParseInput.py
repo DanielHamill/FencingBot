@@ -1,13 +1,16 @@
+import dataset
 # this file contains the parseInput function for the FencingBot. It is in a
 # separate file so that it can be tested independantly from the main app
 
 # the commands also go in this file
 
-commands = {
-    '!dues' : 'Dues are $60 a semster, $110 a year. Cash or venmo is accepted (venmo username here)',
-    '!travelform' : 'Here is the travel form: https://docs.google.com/forms/d/e/1FAIpQLSetkok6nL5vEQvBSvvAKLW5s0GpZm3Q4_B7vPy0OoCNKLutaA/viewform',
-    '!ugaopen' : 'Here is the askfred for the UGA Open: https://askfred.net/Events/moreInfo.php?tournament_id=45465'
-}
+# database with commands, spoot counter, blacklist, etc.
+db = dataset.connect('sqlite:///mydatabase.db')
+command_table = db['commands']
+#print(parseInput("!test", commands))
+commands = {}
+for c in command_table:
+    commands[c['command']] = c['output']
 
 # returns string with list of commands
 def printCommands():

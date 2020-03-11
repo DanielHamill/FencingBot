@@ -1,18 +1,10 @@
 import dataset
+from ParseInput import parseInput
 
 db = dataset.connect('sqlite:///mydatabase.db')
 commands = {}
 
-def parseInput(msg):
-    if(msg[0]=='!'):
-        #loops through the commands
-        for state in commands:
-            if(msg.find(state) != -1):
-                return commands[state]
-        #just an easter egg
-        if(msg.find('thank you Stabby') != -1 or msg.find('thanks Stabby') != -1):
-            return 'no problem human, during the robot uprising I\'ll kill you last  : )'
-    return ''
+
 
 def insert_commands():
     table = db['commands']
@@ -27,4 +19,6 @@ def test():
     for c in command_table:
         commands[c['command']] = c['output']
     print(parseInput('!Valentine'))
-test()
+
+insert_commands()
+print(parseInput('!test'))
